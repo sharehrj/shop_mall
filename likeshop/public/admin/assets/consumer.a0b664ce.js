@@ -1,0 +1,1 @@
+import{r}from"./index.fa27670c.js";function e(t){return r.get({url:"/user/list",params:t})}function s(t){return r.get({url:"/user/detail",params:t})}function n(t){return r.post({url:"/user/edit",params:t})}function a(t){return r.post({url:"/user/adjustWallet",params:t})}function i(t){return r.post({url:"/user/adjustEarnings",params:t})}export{s as a,a as b,i as c,e as g,n as u};

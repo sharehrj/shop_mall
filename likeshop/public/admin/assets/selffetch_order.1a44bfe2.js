@@ -1,0 +1,1 @@
+import{r as e}from"./index.fa27670c.js";function t(r){return e.get({url:"/order/selffetch/detail",params:r})}function a(r){return e.post({url:"/order/order/cancel",data:r})}function n(r){return e.post({url:"/order/order/takeDelivery",data:r})}export{a,n as b,t as o};

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdd.common.mapper.system.SystemAuthPermMapper">
+
+    <!-- 批量插入角色权限 -->
+    <insert id="batchInsertPerms" parameterType="java.util.List">
+        INSERT INTO la_system_auth_perm (id, role_id, menu_id)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.roleId}, #{item.menuId})
+        </foreach>
+    </insert>
+
+</mapper>

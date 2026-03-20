@@ -1,0 +1,1 @@
+import{H as e,aK as t}from"./index-1ac51bcc.js";const i=e({id:"",contact:"",mobile:"",provinceId:"",provinceName:"",cityId:"",cityName:"",districtId:"",districtName:"",info:"",isDefault:0,addressDetail:""});function a(){return{onSelect:(e,a)=>{a&&(Reflect.ownKeys(i).map((t=>{i[t]=e[t]})),t())},address:i}}export{a as u};

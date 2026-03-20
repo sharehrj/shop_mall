@@ -1,0 +1,1 @@
+import{bc as r}from"./index-1ac51bcc.js";function e(e){return r.post({url:"/recharge/placeOrder",data:e},{isAuth:!0})}function t(e){return r.get({url:"/recharge/record",data:e},{isAuth:!0})}function a(){return r.get({url:"/recharge/config"},{isAuth:!0})}export{e as a,t as b,a as r};

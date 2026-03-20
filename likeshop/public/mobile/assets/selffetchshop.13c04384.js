@@ -1,0 +1,1 @@
+import{bb as t,bc as s}from"./index-1ac51bcc.js";const e=t({id:"orderPickup",state:()=>({config:{}}),getters:{getPickup:t=>t.config||{}},actions:{}});function i(t){return s.get({url:"/selffetchshop/list",data:t})}export{i as g,e as u};

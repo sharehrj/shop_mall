@@ -1,0 +1,59 @@
+10:17:57.144 [DateSourceHikariCP housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - DateSourceHikariCP - Thread starvation or clock leap detected (housekeeper delta=10h45m38s117ms128µs).
+10:19:27.680 [DateSourceHikariCP housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - DateSourceHikariCP - Thread starvation or clock leap detected (housekeeper delta=1m6s685ms757µs500ns).
+10:35:38.478 [http-nio-8082-exec-6] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@b0aaee5 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+10:35:43.490 [http-nio-8082-exec-6] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@5fca1cd7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+10:35:48.506 [http-nio-8082-exec-6] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@634ee3c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+10:35:53.523 [http-nio-8082-exec-6] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@7d4f3341 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+10:35:58.538 [http-nio-8082-exec-6] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@3cae7758 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+10:36:48.140 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+10:36:48.168 [main] INFO  com.mdd.front.LikeFrontApplication - Starting LikeFrontApplication using Java 1.8.0_351 on share with PID 23960 (E:\code\java\code-26\likeshop\server\like-front\target\classes started by share in E:\code\java\code-26\likeshop)
+10:36:48.172 [main] INFO  com.mdd.front.LikeFrontApplication - The following 1 profile is active: "dev"
+10:36:49.642 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+10:36:49.642 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+10:36:49.642 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+10:36:49.808 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:36:52.325 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Starting...
+10:36:52.958 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Start completed.
+10:36:55.245 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+10:36:56.142 [main] INFO  com.mdd.front.LikeFrontApplication - Started LikeFrontApplication in 8.419 seconds (JVM running for 10.563)
+10:37:37.912 [http-nio-8082-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:38:54.639 [DateSourceHikariCP housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - DateSourceHikariCP - Thread starvation or clock leap detected (housekeeper delta=54s325ms294µs700ns).
+10:39:54.813 [DateSourceHikariCP housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - DateSourceHikariCP - Thread starvation or clock leap detected (housekeeper delta=1m2s823ms873µs200ns).
+11:02:50.028 [http-nio-8082-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@c4e86c1 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+11:02:55.036 [http-nio-8082-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@7168911a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+11:03:00.045 [http-nio-8082-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@113cf023 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+11:03:05.055 [http-nio-8082-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@6b393db0 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+11:03:10.070 [http-nio-8082-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - DateSourceHikariCP - Failed to validate connection com.mysql.jdbc.JDBC4Connection@571bfbf7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+11:03:54.559 [http-nio-8082-exec-2] ERROR com.mdd.common.exception.GlobalException - 系统异常 Redis command timed out; nested exception is io.lettuce.core.RedisCommandTimeoutException: Command timed out after 5 second(s)
+11:03:58.132 [lettuce-eventExecutorLoop-1-3] INFO  io.lettuce.core.protocol.ConnectionWatchdog - Reconnecting, last destination was /8.130.115.235:6379
+11:03:58.224 [lettuce-nioEventLoop-4-2] INFO  io.lettuce.core.protocol.ReconnectionHandler - Reconnected to 8.130.115.235:6379
+11:14:51.206 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown initiated...
+11:14:51.208 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown completed.
+11:14:56.059 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+11:14:56.123 [main] INFO  com.mdd.front.LikeFrontApplication - Starting LikeFrontApplication using Java 1.8.0_351 on share with PID 25792 (E:\code\java\code-26\likeshop\server\like-front\target\classes started by share in E:\code\java\code-26\likeshop)
+11:14:56.126 [main] INFO  com.mdd.front.LikeFrontApplication - The following 1 profile is active: "dev"
+11:14:57.526 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+11:14:57.527 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+11:14:57.527 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+11:14:57.677 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:15:00.154 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Starting...
+11:15:00.823 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Start completed.
+11:15:02.915 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+11:15:03.803 [main] INFO  com.mdd.front.LikeFrontApplication - Started LikeFrontApplication in 8.119 seconds (JVM running for 9.385)
+11:16:23.335 [http-nio-8082-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:19:00.439 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown initiated...
+11:19:00.451 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown completed.
+11:19:03.770 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+11:19:03.797 [main] INFO  com.mdd.front.LikeFrontApplication - Starting LikeFrontApplication using Java 1.8.0_351 on share with PID 27560 (E:\code\java\code-26\likeshop\server\like-front\target\classes started by share in E:\code\java\code-26\likeshop)
+11:19:03.801 [main] INFO  com.mdd.front.LikeFrontApplication - The following 1 profile is active: "dev"
+11:19:05.214 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+11:19:05.215 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+11:19:05.216 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+11:19:05.379 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:19:07.616 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Starting...
+11:19:08.274 [main] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Start completed.
+11:19:10.403 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+11:19:11.299 [main] INFO  com.mdd.front.LikeFrontApplication - Started LikeFrontApplication in 7.94 seconds (JVM running for 9.179)
+11:20:03.077 [http-nio-8082-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:39:32.643 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown initiated...
+11:39:32.647 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - DateSourceHikariCP - Shutdown completed.

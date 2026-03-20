@@ -1,0 +1,1 @@
+import{bc as a}from"./index-1ac51bcc.js";function t(t){return a.post({url:"/pay/prepay",data:t},{isAuth:!0})}function r(t){return a.get({url:"/pay/payWay",data:t},{isAuth:!0})}function u(t){return a.get({url:"/pay/payStatus",data:t},{isAuth:!0})}export{r as a,u as g,t as p};
