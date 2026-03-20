@@ -46,6 +46,21 @@ public class DistributionLevel implements Serializable {
     @ApiModelProperty("等级描述")
     private String remark;
 
+    @ApiModelProperty("等级标识码 如 VIP1/VIP2")
+    private String levelCode;
+
+    @ApiModelProperty("直推佣金比例(%)")
+    private Double directRatio;
+
+    @ApiModelProperty("复购佣金比例(%)")
+    private Double repurchaseRatio;
+
+    @ApiModelProperty("价差佣金比例(%)")
+    private Double priceDiffRatio;
+
+    @ApiModelProperty("培育佣金比例(%)")
+    private Double cultivateRatio;
+
     @ApiModelProperty("升级类型: [1-OR关系 2-AND关系]")
     private Integer updateType;
 
