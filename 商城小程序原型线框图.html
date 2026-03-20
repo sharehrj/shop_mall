@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商城小程序 · 原型线框图</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F0EDE8;
+    --ink: #1A1714;
+    --ink2: #4A4540;
+    --ink3: #8A847E;
+    --accent: #E84B2A;
+    --accent2: #2A5CE8;
+    --gold: #C8A84B;
+    --surface: #FAFAF8;
+    --border: #D8D4CE;
+    --phone-w: 320px;
+    --phone-h: 640px;
+    --status-h: 44px;
+    --nav-h: 56px;
+    --tab-h: 60px;
+    --radius: 12px;
+    --font-cn: 'Noto Sans SC', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: var(--font-cn);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── LAYOUT ── */
+  .page-header {
+    padding: 48px 60px 32px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .page-title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .page-headline {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .page-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink3);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    padding: 32px 60px 16px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .screens-row {
+    display: flex;
+    gap: 32px;
+    padding: 0 60px 48px;
+    overflow-x: auto;
+    align-items: flex-start;
+  }
+  .screens-row::-webkit-scrollbar { height: 4px; }
+  .screens-row::-webkit-scrollbar-track { background: var(--border); }
+  .screens-row::-webkit-scrollbar-thumb { background: var(--ink3); }
+
+  .screen-wrap {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .screen-name {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+
+  /* ── PHONE SHELL ── */
+  .phone {
+    width: var(--phone-w);
+    height: var(--phone-h);
+    background: var(--surface);
+    border-radius: 36px;
+    border: 2px solid var(--ink);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 4px 6px 0 var(--ink);
+    display: flex;
+    flex-direction: column;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 28px;
+    background: var(--ink);
+    border-radius: 0 0 18px 18px;
+    z-index: 10;
+  }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    height: var(--status-h);
+    padding: 10px 20px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .status-time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding-top: 4px;
+  }
+  .status-icons {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding-top: 4px;
+  }
+  .status-icons span {
+    font-size: 9px;
+    font-family: var(--font-mono);
+    color: var(--ink);
+  }
+
+  /* ── NAV BAR ── */
+  .nav-bar {
+    height: var(--nav-h);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 8px;
+    flex-shrink: 0;
+    background: var(--surface);
+  }
+  .nav-back {
+    width: 28px; height: 28px;
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+  .nav-title {
+    font-size: 15px;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .nav-action {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+    width: 36px;
+    text-align: right;
+  }
+
+  /* ── SCROLL AREA ── */
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ── TAB BAR ── */
+  .tab-bar {
+    height: var(--tab-h);
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-shrink: 0;
+    background: var(--surface);
+  }
+  .tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 9px;
+    color: var(--ink3);
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .tab-item.active { color: var(--accent); }
+  .tab-icon {
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── UTILITY BLOCKS ── */
+  .block { background: white; border-radius: var(--radius); margin: 8px 12px; padding: 12px; border: 1px solid var(--border); }
+  .block-flat { background: white; margin: 8px 12px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); }
+  .row { display: flex; align-items: center; gap: 8px; }
+  .row-between { display: flex; align-items: center; justify-content: space-between; }
+  .col { display: flex; flex-direction: column; gap: 4px; }
+  .tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .tag-red { background: #FFEAE5; color: var(--accent); border: 1px solid #FFCABB; }
+  .tag-blue { background: #E5EEFF; color: var(--accent2); border: 1px solid #BBCEFF; }
+  .tag-gold { background: #FFF5DD; color: #8B6A00; border: 1px solid #F0D888; }
+  .tag-green { background: #E5F5EB; color: #1A7A3A; border: 1px solid #A8DEBB; }
+  .tag-gray { background: #F0EDE8; color: var(--ink3); border: 1px solid var(--border); }
+  .price { font-size: 16px; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+  .price-sm { font-size: 13px; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+  .price-old { font-size: 11px; color: var(--ink3); text-decoration: line-through; font-family: var(--font-mono); }
+  .label { font-size: 10px; color: var(--ink3); }
+  .title-sm { font-size: 13px; font-weight: 700; letter-spacing: -0.01em; }
+  .title-xs { font-size: 11px; font-weight: 700; }
+  .text-xs { font-size: 10px; color: var(--ink2); line-height: 1.5; }
+  .text-sm { font-size: 12px; color: var(--ink2); }
+  .text-red { color: var(--accent); }
+  .text-blue { color: var(--accent2); }
+  .text-gold { color: var(--gold); }
+  .divider { height: 1px; background: var(--border); margin: 8px 0; }
+  .spacer { height: 8px; }
+  .img-placeholder {
+    border-radius: 8px;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink3);
+    font-size: 9px;
+    font-family: var(--font-mono);
+    border: 1px dashed var(--ink3);
+  }
+  .btn {
+    display: flex; align-items: center; justify-content: center;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    border: 2px solid var(--ink);
+  }
+  .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink); }
+  .btn-gold { background: var(--gold); color: white; border-color: var(--gold); }
+  .btn-sm {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 28px; padding: 0 12px;
+    border-radius: 6px;
+    font-size: 11px; font-weight: 700;
+    cursor: pointer;
+    border: 1.5px solid var(--ink);
+  }
+  .btn-sm-primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .avatar {
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    color: var(--ink3);
+    font-size: 10px;
+    flex-shrink: 0;
+    border: 1.5px solid var(--border);
+  }
+  .badge {
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 1px 5px;
+    font-family: var(--font-mono);
+  }
+
+  /* ICON SVGs inline */
+  .icon { display: inline-block; }
+
+  /* annotation */
+  .anno {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--accent2);
+    background: #E5EEFF;
+    border: 1px solid var(--accent2);
+    border-radius: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .anno-line {
+    position: absolute;
+    border-left: 1px dashed var(--accent2);
+    pointer-events: none;
+  }
+
+  /* region map colors */
+  .region-county { background: #E5EEFF; color: var(--accent2); border: 1px solid #BBCEFF; }
+  .region-city   { background: #FFF5DD; color: #8B6A00; border: 1px solid #F0D888; }
+  .region-prov   { background: #FFEAE5; color: var(--accent); border: 1px solid #FFCABB; }
+
+  /* scroll indicator */
+  .scroll-hint {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--ink3);
+    padding: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  /* FLOW DIAGRAM */
+  .flow-section {
+    padding: 32px 60px 48px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .flow-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 24px;
+  }
+  .flow-grid {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .flow-node {
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    background: white;
+    box-shadow: 2px 2px 0 var(--ink);
+    white-space: nowrap;
+  }
+  .flow-node.accent { background: var(--accent); color: white; border-color: var(--accent); }
+  .flow-node.blue { background: var(--accent2); color: white; border-color: var(--accent2); }
+  .flow-node.gold { background: var(--gold); color: white; border-color: var(--gold); }
+  .flow-arrow { font-size: 16px; color: var(--ink3); font-family: var(--font-mono); }
+  .flow-note { font-size: 10px; color: var(--ink3); font-family: var(--font-mono); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PAGE HEADER
+═══════════════════════════════════════ -->
+<div class="page-header">
+  <div>
+    <div class="page-title">Wireframe · Prototype</div>
+    <div class="page-headline">商城小程序<br>原型线框图</div>
+  </div>
+  <div class="page-meta">
+    含分销体系 · 区域代理<br>
+    v1.0 · 共 10 个核心页面<br>
+    <span style="color:var(--accent);font-weight:700">USER FLOWS INCLUDED</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 1 — 首页 + 商城
+═══════════════════════════════════════ -->
+<div class="section-label">01 &nbsp; 主页面 · Tab 导航</div>
+<div class="screens-row">
+
+  <!-- ① 首页 -->
+  <div class="screen-wrap">
+    <div class="screen-name">01 / 首页</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span class="status-time">9:41</span>
+        <div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div>
+      </div>
+      <!-- Banner -->
+      <div style="margin:4px 12px 0; position:relative;">
+        <div class="img-placeholder" style="height:140px; border-radius:12px; background:#F5F0EB;">
+          <div style="text-align:center">
+            <div style="font-size:18px;font-weight:700;color:var(--accent);letter-spacing:-0.02em;">限时精选</div>
+            <div style="font-size:10px;color:var(--ink3);margin-top:4px;font-family:var(--font-mono)">BANNER IMAGE</div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:4px;">
+          <div style="width:16px;height:3px;background:var(--accent);border-radius:2px;"></div>
+          <div style="width:6px;height:3px;background:var(--border);border-radius:2px;"></div>
+          <div style="width:6px;height:3px;background:var(--border);border-radius:2px;"></div>
+        </div>
+      </div>
+
+      <!-- 快捷入口 -->
+      <div class="scroll-area">
+        <div style="display:flex;justify-content:space-around;padding:12px 12px 8px;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <div style="width:44px;height:44px;background:#FFEAE5;border-radius:12px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;">🛒</div>
+            <span style="font-size:10px;color:var(--ink2);">全部商品</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <div style="width:44px;height:44px;background:#E5EEFF;border-radius:12px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;">🎁</div>
+            <span style="font-size:10px;color:var(--ink2);">体验区</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <div style="width:44px;height:44px;background:#FFF5DD;border-radius:12px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;">⬆️</div>
+            <span style="font-size:10px;color:var(--ink2);">升级套餐</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <div style="width:44px;height:44px;background:#E5F5EB;border-radius:12px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;">💰</div>
+            <span style="font-size:10px;color:var(--ink2);">收益中心</span>
+          </div>
+        </div>
+
+        <!-- 区块标题 -->
+        <div class="row-between" style="padding:0 12px 8px;">
+          <div class="title-sm">精选推荐</div>
+          <div style="font-size:11px;color:var(--accent);">查看全部 →</div>
+        </div>
+
+        <!-- 商品网格 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px 8px;">
+          <div class="block-flat" style="margin:0;padding:8px;">
+            <div class="img-placeholder" style="height:80px;margin-bottom:6px;font-size:8px;">图片</div>
+            <div class="text-xs" style="font-weight:700;margin-bottom:2px;color:var(--ink);">精品礼盒装</div>
+            <div class="row" style="gap:4px;">
+              <span class="price-sm">¥299</span>
+              <span class="price-old">¥399</span>
+            </div>
+            <div style="margin-top:4px;font-size:9px;color:var(--ink3);">已售 2.3k</div>
+          </div>
+          <div class="block-flat" style="margin:0;padding:8px;position:relative;">
+            <div style="position:absolute;top:4px;right:4px;" class="tag tag-red">体验</div>
+            <div class="img-placeholder" style="height:80px;margin-bottom:6px;font-size:8px;">图片</div>
+            <div class="text-xs" style="font-weight:700;margin-bottom:2px;color:var(--ink);">健康养生套餐</div>
+            <div class="row" style="gap:4px;">
+              <span class="price-sm">¥188</span>
+              <span class="price-old">¥260</span>
+            </div>
+            <div style="margin-top:4px;font-size:9px;color:var(--ink3);">已售 5.1k</div>
+          </div>
+          <div class="block-flat" style="margin:0;padding:8px;">
+            <div class="img-placeholder" style="height:80px;margin-bottom:6px;font-size:8px;">图片</div>
+            <div class="text-xs" style="font-weight:700;margin-bottom:2px;color:var(--ink);">新品上市</div>
+            <div class="row" style="gap:4px;">
+              <span class="price-sm">¥458</span>
+            </div>
+            <div style="margin-top:4px;font-size:9px;color:var(--ink3);">已售 980</div>
+          </div>
+          <div class="block-flat" style="margin:0;padding:8px;">
+            <div class="img-placeholder" style="height:80px;margin-bottom:6px;font-size:8px;">图片</div>
+            <div class="text-xs" style="font-weight:700;margin-bottom:2px;color:var(--ink);">热销爆款</div>
+            <div class="row" style="gap:4px;">
+              <span class="price-sm">¥128</span>
+              <span class="price-old">¥180</span>
+            </div>
+            <div style="margin-top:4px;font-size:9px;color:var(--ink3);">已售 8.7k</div>
+          </div>
+        </div>
+        <div class="scroll-hint">↓ 下拉加载更多</div>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <div class="tab-item active">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="12" y="3" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="3" y="12" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="12" y="12" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/></svg>
+          首页
+        </div>
+        <div class="tab-item">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 5V4a4 4 0 018 0v1" stroke="currentColor" stroke-width="1.5"/></svg>
+          商城
+        </div>
+        <div class="tab-item">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 18c0-3.866 3.134-7 7-7h2a7 7 0 017 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          我的
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 商城列表 -->
+  <div class="screen-wrap">
+    <div class="screen-name">02 / 商城列表</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span class="status-time">9:41</span>
+        <div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div>
+      </div>
+      <!-- Search -->
+      <div style="padding:8px 12px;display:flex;gap:8px;border-bottom:1px solid var(--border);">
+        <div style="flex:1;height:34px;background:var(--bg);border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;padding:0 10px;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4" stroke="#8A847E" stroke-width="1.5"/><path d="M9.5 9.5L12 12" stroke="#8A847E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span style="font-size:12px;color:var(--ink3);">搜索商品</span>
+        </div>
+        <div style="width:34px;height:34px;background:var(--bg);border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M4 8h8M6 12h4" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <!-- Category tabs -->
+      <div style="display:flex;overflow-x:auto;padding:8px 12px;gap:8px;border-bottom:1px solid var(--border);">
+        <div style="flex-shrink:0;padding:4px 12px;background:var(--accent);color:white;border-radius:6px;font-size:11px;font-weight:700;">全部</div>
+        <div style="flex-shrink:0;padding:4px 12px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">健康</div>
+        <div style="flex-shrink:0;padding:4px 12px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">礼盒</div>
+        <div style="flex-shrink:0;padding:4px 12px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">护肤</div>
+        <div style="flex-shrink:0;padding:4px 12px;background:var(--bg);border-radius:6px;font-size:11px;color:var(--ink2);">食品</div>
+      </div>
+
+      <div class="scroll-area">
+        <!-- Product list items -->
+        <div style="padding:8px 12px;display:flex;flex-direction:column;gap:8px;">
+          <!-- item -->
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;gap:10px;">
+            <div class="img-placeholder" style="width:72px;height:72px;flex-shrink:0;border-radius:8px;">IMG</div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:12px;font-weight:700;line-height:1.4;margin-bottom:4px;">精品礼盒装 大健康系列</div>
+                <div class="tag tag-red" style="margin-bottom:4px;">体验区</div>
+              </div>
+              <div class="row-between">
+                <span class="price-sm">¥299</span>
+                <div class="btn-sm btn-sm-primary">加入购物车</div>
+              </div>
+            </div>
+          </div>
+          <!-- item -->
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;gap:10px;">
+            <div class="img-placeholder" style="width:72px;height:72px;flex-shrink:0;border-radius:8px;">IMG</div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:12px;font-weight:700;line-height:1.4;margin-bottom:4px;">健康养生套餐 月度装</div>
+                <div style="font-size:10px;color:var(--ink3);">已售 5,106件</div>
+              </div>
+              <div class="row-between">
+                <div><span class="price-sm">¥188</span><span class="price-old" style="margin-left:4px;">¥260</span></div>
+                <div class="btn-sm btn-sm-primary">加入购物车</div>
+              </div>
+            </div>
+          </div>
+          <!-- item -->
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;display:flex;gap:10px;">
+            <div class="img-placeholder" style="width:72px;height:72px;flex-shrink:0;border-radius:8px;">IMG</div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:12px;font-weight:700;line-height:1.4;margin-bottom:4px;">新品上市 限量版礼盒</div>
+                <div class="tag tag-blue" style="margin-bottom:4px;">NEW</div>
+              </div>
+              <div class="row-between">
+                <span class="price-sm">¥458</span>
+                <div class="btn-sm btn-sm-primary">加入购物车</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <div class="tab-item"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="12" y="3" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="3" y="12" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="12" y="12" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/></svg>首页</div>
+        <div class="tab-item active"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 5V4a4 4 0 018 0v1" stroke="currentColor" stroke-width="1.5"/></svg>商城</div>
+        <div class="tab-item"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 18c0-3.866 3.134-7 7-7h2a7 7 0 017 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>我的</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 商品详情 -->
+  <div class="screen-wrap">
+    <div class="screen-name">03 / 商品详情</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span class="status-time">9:41</span>
+        <div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div>
+      </div>
+      <div class="scroll-area">
+        <!-- Product image -->
+        <div class="img-placeholder" style="width:100%;height:240px;border-radius:0;border-left:none;border-right:none;border-top:none;">商品主图</div>
+        <div style="padding:12px;">
+          <!-- Price -->
+          <div class="row-between" style="margin-bottom:8px;">
+            <div><span class="price">¥299</span><span class="price-old" style="margin-left:8px;">¥399</span></div>
+            <span class="tag tag-red">体验区可购</span>
+          </div>
+          <div style="font-size:14px;font-weight:700;line-height:1.4;margin-bottom:4px;">精品礼盒装 大健康系列</div>
+          <div style="font-size:11px;color:var(--ink3);margin-bottom:12px;">已售 2,300+ · ⭐ 4.9 (386条评价)</div>
+
+          <div class="divider"></div>
+
+          <!-- Spec selector -->
+          <div style="margin:8px 0;">
+            <div style="font-size:11px;color:var(--ink3);margin-bottom:6px;">规格</div>
+            <div style="display:flex;gap:8px;">
+              <div style="padding:5px 14px;border:1.5px solid var(--accent);border-radius:6px;font-size:11px;font-weight:700;color:var(--accent);">标准装</div>
+              <div style="padding:5px 14px;border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--ink3);">豪华装</div>
+              <div style="padding:5px 14px;border:1px solid var(--border);border-radius:6px;font-size:11px;color:var(--ink3);">家庭装</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Commission hint -->
+          <div style="background:#FFF5DD;border:1px solid #F0D888;border-radius:8px;padding:8px 10px;margin:8px 0;">
+            <div class="row" style="gap:6px;">
+              <span style="font-size:12px;">💰</span>
+              <div>
+                <div style="font-size:10px;font-weight:700;color:#8B6A00;">分享赚钱</div>
+                <div style="font-size:10px;color:#8B6A00;">邀请好友购买，您可获得 <strong>¥89.70</strong> 推荐奖</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail images placeholder -->
+          <div style="font-size:11px;font-weight:700;margin:10px 0 6px;">商品详情</div>
+          <div class="img-placeholder" style="height:160px;border-radius:8px;">详情图 1</div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;margin-top:8px;">详情图 2</div>
+        </div>
+      </div>
+      <!-- Bottom action bar -->
+      <div style="border-top:1px solid var(--border);padding:8px 12px;display:flex;gap:8px;background:white;">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:44px;gap:2px;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3.5c0 0-5 3.17-5 6.5A5 5 0 0014 10c0-3.33-5-6.5-5-6.5z" stroke="var(--ink)" stroke-width="1.5"/></svg>
+          <span style="font-size:8px;color:var(--ink3);">收藏</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:44px;gap:2px;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="var(--ink)" stroke-width="1.5"/><path d="M9 6v6M6 9h6" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span style="font-size:8px;color:var(--ink3);">购物车</span>
+        </div>
+        <div class="btn btn-outline" style="flex:1;height:40px;font-size:12px;">加入购物车</div>
+        <div class="btn btn-primary" style="flex:1;height:40px;font-size:12px;">立即购买</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screens-row -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 — 下单 + 身份升级
+═══════════════════════════════════════ -->
+<div class="section-label">02 &nbsp; 下单流程 · 身份升级</div>
+<div class="screens-row">
+
+  <!-- ④ 下单确认 -->
+  <div class="screen-wrap">
+    <div class="screen-name">04 / 下单确认</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar"><span class="status-time">9:41</span><div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <div class="nav-bar">
+        <div class="nav-back">←</div>
+        <div class="nav-title">确认订单</div>
+        <div class="nav-action"></div>
+      </div>
+      <div class="scroll-area" style="padding:0 0 8px;">
+        <!-- Address -->
+        <div class="block">
+          <div class="label" style="margin-bottom:6px;">收货地址</div>
+          <div class="row-between">
+            <div>
+              <div style="font-size:13px;font-weight:700;">张 三 &nbsp; 138****8888</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:2px;">浙江省杭州市西湖区文三路 123 号</div>
+            </div>
+            <span style="color:var(--ink3);font-size:18px;">›</span>
+          </div>
+        </div>
+
+        <!-- Product -->
+        <div class="block">
+          <div class="row" style="gap:10px;">
+            <div class="img-placeholder" style="width:56px;height:56px;flex-shrink:0;border-radius:6px;">IMG</div>
+            <div style="flex:1;">
+              <div style="font-size:12px;font-weight:700;line-height:1.4;">精品礼盒装 · 标准装</div>
+              <div class="row-between" style="margin-top:6px;">
+                <span class="price-sm">¥299</span>
+                <span style="font-size:11px;color:var(--ink3);">×1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Region hint -->
+        <div class="block" style="background:#E5F5EB;border-color:#A8DEBB;">
+          <div class="row" style="gap:6px;">
+            <span style="font-size:14px;">📍</span>
+            <div>
+              <div style="font-size:10px;font-weight:700;color:#1A7A3A;">区域代理服务</div>
+              <div style="font-size:10px;color:#1A7A3A;">您所在区域由 <strong>杭州西湖区代理</strong> 提供服务</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="block">
+          <div class="row-between">
+            <span style="font-size:12px;color:var(--ink2);">订单备注</span>
+            <span style="font-size:11px;color:var(--ink3);">选填</span>
+          </div>
+          <div style="margin-top:6px;height:32px;background:var(--bg);border-radius:6px;border:1px solid var(--border);"></div>
+        </div>
+
+        <!-- Price detail -->
+        <div class="block">
+          <div class="row-between" style="margin-bottom:6px;"><span style="font-size:12px;color:var(--ink2);">商品金额</span><span style="font-size:12px;font-family:var(--font-mono);">¥299.00</span></div>
+          <div class="row-between" style="margin-bottom:6px;"><span style="font-size:12px;color:var(--ink2);">运费</span><span style="font-size:12px;font-family:var(--font-mono);color:var(--accent);">免运费</span></div>
+          <div class="divider"></div>
+          <div class="row-between"><span style="font-size:13px;font-weight:700;">实付款</span><span class="price">¥299.00</span></div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div style="border-top:1px solid var(--border);padding:10px 12px;background:white;">
+        <div class="row-between" style="margin-bottom:8px;">
+          <span style="font-size:12px;color:var(--ink2);">合计：</span>
+          <span class="price">¥299.00</span>
+        </div>
+        <div class="btn btn-primary">提交订单</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 套餐升级 -->
+  <div class="screen-wrap">
+    <div class="screen-name">05 / 套餐升级</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar"><span class="status-time">9:41</span><div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <div class="nav-bar">
+        <div class="nav-back">←</div>
+        <div class="nav-title">升级身份</div>
+        <div class="nav-action"></div>
+      </div>
+      <div class="scroll-area" style="padding:0 0 8px;">
+        <!-- current identity -->
+        <div style="background:linear-gradient(135deg,#F0EDE8,#E8E3DC);margin:8px 12px;border-radius:12px;padding:14px;border:1.5px solid var(--border);">
+          <div class="label" style="margin-bottom:4px;">当前身份</div>
+          <div class="row" style="gap:8px;">
+            <div class="avatar" style="width:40px;height:40px;font-size:14px;background:white;">张</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;">张三</div>
+              <span class="tag tag-gray">游客/会员</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:0 12px 4px;font-size:11px;color:var(--ink3);">选择升级方案</div>
+
+        <!-- Package cards -->
+        <div class="block">
+          <div class="row-between" style="margin-bottom:6px;">
+            <div><span class="tag tag-green" style="font-size:10px;">推荐</span> <span style="font-size:13px;font-weight:700;margin-left:4px;">代理</span></div>
+            <div style="text-align:right;"><div class="price">¥1,986</div></div>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-bottom:8px;line-height:1.6;">· 一级推荐奖 30%<br>· 二级推荐奖 10%<br>· 开启邀请推广权限</div>
+          <div class="btn btn-outline" style="height:34px;font-size:11px;">立即购买</div>
+        </div>
+
+        <div class="block" style="border-color:var(--gold);box-shadow:2px 2px 0 var(--gold);">
+          <div style="position:relative;">
+            <div style="position:absolute;top:-18px;right:0;" class="tag tag-gold">热门</div>
+          </div>
+          <div class="row-between" style="margin-bottom:6px;">
+            <div><span class="tag tag-gold">合伙人</span></div>
+            <div style="text-align:right;"><div class="price" style="color:var(--gold);">¥9,868</div><div style="font-size:9px;color:var(--ink3);">补差价 ¥7,882</div></div>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-bottom:8px;line-height:1.6;">· 包含代理全部权益<br>· 管理奖分红资格<br>· 更高级培训支持</div>
+          <div class="btn btn-gold" style="height:34px;font-size:11px;">立即升级</div>
+        </div>
+
+        <div class="block" style="border-color:var(--accent);box-shadow:2px 2px 0 var(--accent);">
+          <div class="row-between" style="margin-bottom:6px;">
+            <div><span class="tag tag-red">联创</span></div>
+            <div style="text-align:right;"><div class="price">¥19,868</div><div style="font-size:9px;color:var(--ink3);">补差价 ¥17,882</div></div>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-bottom:8px;line-height:1.6;">· 包含合伙人全部权益<br>· 全球分红池 2%+3%<br>· 前30名额外分红</div>
+          <div class="btn btn-primary" style="height:34px;font-size:11px;">立即升级</div>
+        </div>
+
+        <div style="padding:8px 12px;background:#F5F0EB;margin:0 12px;border-radius:8px;border:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--ink3);line-height:1.6;">
+            <strong style="color:var(--ink);">总裁（免费）：</strong>满足以下任一条件自动晋升<br>
+            · 直推 3 名代理及以上成员<br>
+            · 直推 2 代理 + 1 联创<br>
+            · 直推 2 联创
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screens-row -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 3 — 个人中心 + 收益
+═══════════════════════════════════════ -->
+<div class="section-label">03 &nbsp; 个人中心 · 收益体系</div>
+<div class="screens-row">
+
+  <!-- ⑥ 我的主页 -->
+  <div class="screen-wrap">
+    <div class="screen-name">06 / 我的</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar" style="background:var(--ink);"><span class="status-time" style="color:white;">9:41</span><div class="status-icons" style="color:white;"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <!-- Profile header -->
+      <div style="background:var(--ink);padding:8px 16px 20px;">
+        <div class="row" style="gap:12px;">
+          <div class="avatar" style="width:52px;height:52px;font-size:20px;font-weight:700;background:#333;color:white;border-color:#555;">张</div>
+          <div style="flex:1;">
+            <div style="font-size:16px;font-weight:700;color:white;margin-bottom:4px;">张 三</div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <span style="background:var(--gold);color:white;border-radius:4px;font-size:9px;font-weight:700;padding:2px 7px;font-family:var(--font-mono);">联创</span>
+              <span style="font-size:10px;color:#999;">邀请码：AB1234</span>
+            </div>
+          </div>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/><path d="M10 6v4l2.5 2.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+
+        <!-- Wallet summary -->
+        <div style="background:#222;border-radius:10px;padding:12px;margin-top:12px;">
+          <div style="font-size:10px;color:#888;margin-bottom:6px;font-family:var(--font-mono);">可提现余额 (CNY)</div>
+          <div style="font-size:26px;font-weight:700;color:white;font-family:var(--font-mono);margin-bottom:10px;">¥ 3,286.50</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div><div style="font-size:10px;color:#888;">推荐奖</div><div style="font-size:12px;font-weight:700;color:white;font-family:var(--font-mono);">¥1,980</div></div>
+            <div><div style="font-size:10px;color:#888;">分红</div><div style="font-size:12px;font-weight:700;color:var(--gold);font-family:var(--font-mono);">¥1,106</div></div>
+            <div><div style="font-size:10px;color:#888;">冻结中</div><div style="font-size:12px;font-weight:700;color:#aaa;font-family:var(--font-mono);">¥280</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-area">
+        <!-- Order nav -->
+        <div class="block">
+          <div class="row-between" style="margin-bottom:10px;">
+            <span style="font-size:13px;font-weight:700;">我的订单</span>
+            <span style="font-size:11px;color:var(--accent);">全部订单 →</span>
+          </div>
+          <div style="display:flex;justify-content:space-around;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:28px;height:28px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;position:relative;">
+                💳
+                <span class="badge" style="position:absolute;top:-4px;right:-4px;">2</span>
+              </div>
+              <span style="font-size:10px;color:var(--ink2);">待付款</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:28px;height:28px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;">📦</div>
+              <span style="font-size:10px;color:var(--ink2);">待发货</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:28px;height:28px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;">🚚</div>
+              <span style="font-size:10px;color:var(--ink2);">待收货</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:28px;height:28px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;">⭐</div>
+              <span style="font-size:10px;color:var(--ink2);">待评价</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu list -->
+        <div class="block" style="padding:0;">
+          <div style="border-bottom:1px solid var(--border);">
+            <div class="row-between" style="padding:10px 12px;">
+              <div class="row" style="gap:8px;"><span>💰</span><span style="font-size:12px;font-weight:700;">收益中心</span></div>
+              <span style="color:var(--ink3);">›</span>
+            </div>
+          </div>
+          <div style="border-bottom:1px solid var(--border);">
+            <div class="row-between" style="padding:10px 12px;">
+              <div class="row" style="gap:8px;"><span>👥</span><span style="font-size:12px;font-weight:700;">我的团队</span></div>
+              <div class="row" style="gap:4px;"><span style="font-size:11px;color:var(--accent);">12人</span><span style="color:var(--ink3);">›</span></div>
+            </div>
+          </div>
+          <div style="border-bottom:1px solid var(--border);">
+            <div class="row-between" style="padding:10px 12px;">
+              <div class="row" style="gap:8px;"><span>📢</span><span style="font-size:12px;font-weight:700;">推广中心</span></div>
+              <span style="color:var(--ink3);">›</span>
+            </div>
+          </div>
+          <div style="border-bottom:1px solid var(--border);">
+            <div class="row-between" style="padding:10px 12px;">
+              <div class="row" style="gap:8px;"><span>🗺️</span><span style="font-size:12px;font-weight:700;">区域代理</span></div>
+              <div class="row" style="gap:4px;"><span class="tag tag-blue" style="font-size:8px;">可申请</span><span style="color:var(--ink3);">›</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="row-between" style="padding:10px 12px;">
+              <div class="row" style="gap:8px;"><span>⚙️</span><span style="font-size:12px;font-weight:700;">设置</span></div>
+              <span style="color:var(--ink3);">›</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="12" y="3" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="3" y="12" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/><rect x="12" y="12" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/></svg>首页</div>
+        <div class="tab-item"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 5V4a4 4 0 018 0v1" stroke="currentColor" stroke-width="1.5"/></svg>商城</div>
+        <div class="tab-item active"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M4 18c0-3.866 3.134-7 7-7h2a7 7 0 017 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>我的</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ 收益中心 -->
+  <div class="screen-wrap">
+    <div class="screen-name">07 / 收益中心</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar"><span class="status-time">9:41</span><div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <div class="nav-bar">
+        <div class="nav-back">←</div>
+        <div class="nav-title">收益中心</div>
+        <div class="nav-action">提现</div>
+      </div>
+      <div class="scroll-area">
+        <!-- Balance card -->
+        <div style="background:var(--ink);margin:8px 12px;border-radius:12px;padding:16px;">
+          <div style="font-size:10px;color:#888;margin-bottom:4px;font-family:var(--font-mono);">可提现余额</div>
+          <div style="font-size:28px;font-weight:700;color:white;font-family:var(--font-mono);">¥ 3,286.50</div>
+          <div style="font-size:10px;color:#666;margin-top:4px;">冻结中：¥280.00（预计7日后到账）</div>
+          <div class="btn btn-primary" style="margin-top:12px;height:36px;font-size:12px;">申请提现</div>
+        </div>
+
+        <!-- Stats grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 12px 8px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;">
+            <div style="font-size:9px;color:var(--ink3);font-family:var(--font-mono);">一级推荐奖</div>
+            <div style="font-size:16px;font-weight:700;color:var(--accent);font-family:var(--font-mono);margin-top:2px;">¥1,980</div>
+            <div style="font-size:9px;color:var(--ink3);">共 22 笔</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;">
+            <div style="font-size:9px;color:var(--ink3);font-family:var(--font-mono);">二级推荐奖</div>
+            <div style="font-size:16px;font-weight:700;color:var(--accent2);font-family:var(--font-mono);margin-top:2px;">¥320</div>
+            <div style="font-size:9px;color:var(--ink3);">共 8 笔</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;">
+            <div style="font-size:9px;color:var(--ink3);font-family:var(--font-mono);">管理分红</div>
+            <div style="font-size:16px;font-weight:700;color:var(--gold);font-family:var(--font-mono);margin-top:2px;">¥1,106</div>
+            <div style="font-size:9px;color:var(--ink3);">本月到账</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;">
+            <div style="font-size:9px;color:var(--ink3);font-family:var(--font-mono);">二次回购</div>
+            <div style="font-size:16px;font-weight:700;color:#1A7A3A;font-family:var(--font-mono);margin-top:2px;">¥160.50</div>
+            <div style="font-size:9px;color:var(--ink3);">共 5 笔</div>
+          </div>
+        </div>
+
+        <!-- Recent records -->
+        <div style="padding:0 12px 8px;font-size:12px;font-weight:700;">最近明细</div>
+        <div style="margin:0 12px;background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:10px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:11px;font-weight:700;">一级推荐奖</div><div style="font-size:9px;color:var(--ink3);margin-top:2px;">李**购买 精品礼盒装 · 03-15</div></div>
+            <span style="font-size:12px;font-weight:700;color:var(--accent);font-family:var(--font-mono);">+¥89.70</span>
+          </div>
+          <div style="padding:10px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:11px;font-weight:700;">管理分红</div><div style="font-size:9px;color:var(--ink3);margin-top:2px;">3月月度分红池分配 · 03-01</div></div>
+            <span style="font-size:12px;font-weight:700;color:var(--gold);font-family:var(--font-mono);">+¥1,106</span>
+          </div>
+          <div style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:11px;font-weight:700;">二级推荐奖</div><div style="font-size:9px;color:var(--ink3);margin-top:2px;">王**购买 健康套餐 · 02-28</div></div>
+            <span style="font-size:12px;font-weight:700;color:var(--accent2);font-family:var(--font-mono);">+¥18.80</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ 我的团队 -->
+  <div class="screen-wrap">
+    <div class="screen-name">08 / 我的团队</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar"><span class="status-time">9:41</span><div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <div class="nav-bar">
+        <div class="nav-back">←</div>
+        <div class="nav-title">我的团队</div>
+        <div class="nav-action"></div>
+      </div>
+      <div class="scroll-area">
+        <!-- Summary -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:8px 12px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+            <div style="font-size:18px;font-weight:700;color:var(--accent);font-family:var(--font-mono);">12</div>
+            <div style="font-size:9px;color:var(--ink3);">直推人数</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+            <div style="font-size:18px;font-weight:700;color:var(--accent2);font-family:var(--font-mono);">38</div>
+            <div style="font-size:9px;color:var(--ink3);">团队总人数</div>
+          </div>
+          <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+            <div style="font-size:18px;font-weight:700;color:var(--gold);font-family:var(--font-mono);">¥8.2w</div>
+            <div style="font-size:9px;color:var(--ink3);">团队业绩</div>
+          </div>
+        </div>
+
+        <!-- Level tabs -->
+        <div style="display:flex;gap:0;margin:0 12px 8px;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+          <div style="flex:1;padding:7px;text-align:center;background:var(--accent);color:white;font-size:11px;font-weight:700;">直推 (12)</div>
+          <div style="flex:1;padding:7px;text-align:center;background:white;font-size:11px;color:var(--ink3);">二级 (26)</div>
+        </div>
+
+        <!-- Team list -->
+        <div style="display:flex;flex-direction:column;gap:6px;padding:0 12px 8px;">
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;">
+            <div class="row-between">
+              <div class="row" style="gap:8px;">
+                <div class="avatar" style="width:36px;height:36px;font-size:14px;font-weight:700;">李</div>
+                <div>
+                  <div style="font-size:12px;font-weight:700;">李 梅</div>
+                  <div class="row" style="gap:4px;margin-top:2px;">
+                    <span class="tag tag-blue" style="font-size:8px;">代理</span>
+                    <span style="font-size:9px;color:var(--ink3);">加入 25天前</span>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:11px;font-weight:700;font-family:var(--font-mono);">¥3,286</div>
+                <div style="font-size:9px;color:var(--ink3);">本月业绩</div>
+              </div>
+            </div>
+            <!-- sub progress -->
+            <div style="margin-top:8px;">
+              <div class="row-between" style="margin-bottom:3px;"><span style="font-size:9px;color:var(--ink3);">直推进度</span><span style="font-size:9px;color:var(--ink3);">1/3 (距总裁)</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:33%;background:var(--accent2);"></div></div>
+            </div>
+          </div>
+
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;">
+            <div class="row-between">
+              <div class="row" style="gap:8px;">
+                <div class="avatar" style="width:36px;height:36px;font-size:14px;font-weight:700;">王</div>
+                <div>
+                  <div style="font-size:12px;font-weight:700;">王 强</div>
+                  <div class="row" style="gap:4px;margin-top:2px;">
+                    <span class="tag tag-gold" style="font-size:8px;">联创</span>
+                    <span style="font-size:9px;color:var(--ink3);">加入 62天前</span>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:11px;font-weight:700;font-family:var(--font-mono);">¥12,480</div>
+                <div style="font-size:9px;color:var(--ink3);">本月业绩</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:10px;opacity:0.6;">
+            <div class="row-between">
+              <div class="row" style="gap:8px;">
+                <div class="avatar" style="width:36px;height:36px;font-size:14px;">赵</div>
+                <div>
+                  <div style="font-size:12px;font-weight:700;">赵 芳</div>
+                  <div class="row" style="gap:4px;margin-top:2px;">
+                    <span class="tag tag-gray" style="font-size:8px;">会员</span>
+                    <span style="font-size:9px;color:var(--ink3);">加入 8天前</span>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:11px;font-weight:700;font-family:var(--font-mono);">¥299</div>
+                <div style="font-size:9px;color:var(--ink3);">本月业绩</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screens-row -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 4 — 推广 + 区域代理
+═══════════════════════════════════════ -->
+<div class="section-label">04 &nbsp; 推广中心 · 区域代理</div>
+<div class="screens-row">
+
+  <!-- ⑨ 推广中心 -->
+  <div class="screen-wrap">
+    <div class="screen-name">09 / 推广中心</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar"><span class="status-time">9:41</span><div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <div class="nav-bar">
+        <div class="nav-back">←</div>
+        <div class="nav-title">推广中心</div>
+        <div class="nav-action"></div>
+      </div>
+      <div class="scroll-area">
+        <!-- Invite card -->
+        <div style="background:var(--ink);margin:8px 12px;border-radius:14px;padding:16px;overflow:hidden;position:relative;">
+          <div style="position:absolute;right:-20px;top:-20px;width:120px;height:120px;border:30px solid #333;border-radius:50%;opacity:0.4;"></div>
+          <div style="font-size:11px;color:#888;margin-bottom:8px;font-family:var(--font-mono);">我的专属邀请码</div>
+          <div style="font-size:32px;font-weight:700;color:white;font-family:var(--font-mono);letter-spacing:0.1em;margin-bottom:4px;">AB1234</div>
+          <div style="font-size:10px;color:#888;margin-bottom:12px;">邀请好友注册，好友升级后您可获得推荐奖</div>
+          <div style="display:flex;gap:8px;">
+            <div style="flex:1;height:34px;background:#333;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:white;">复制邀请码</div>
+            <div class="btn btn-primary" style="flex:1;height:34px;font-size:11px;">分享给好友</div>
+          </div>
+        </div>
+
+        <!-- QR code -->
+        <div class="block" style="text-align:center;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:8px;">专属邀请二维码</div>
+          <div style="width:100px;height:100px;background:var(--bg);border:2px solid var(--border);border-radius:8px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:8px;color:var(--ink3);font-family:var(--font-mono);">QR CODE</div>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-bottom:8px;">长按识别或截图保存</div>
+          <div style="display:flex;gap:8px;">
+            <div class="btn btn-outline" style="flex:1;height:32px;font-size:11px;">保存图片</div>
+            <div class="btn btn-primary" style="flex:1;height:32px;font-size:11px;">生成海报</div>
+          </div>
+        </div>
+
+        <!-- Invite link -->
+        <div class="block">
+          <div style="font-size:12px;font-weight:700;margin-bottom:6px;">邀请链接</div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px;font-size:10px;color:var(--ink3);font-family:var(--font-mono);word-break:break-all;">
+            https://mall.example.com/register?code=AB1234
+          </div>
+          <div class="btn btn-outline" style="margin-top:8px;height:32px;font-size:11px;">复制链接</div>
+        </div>
+
+        <!-- Commission preview -->
+        <div class="block" style="background:#FFF5DD;border-color:#F0D888;">
+          <div style="font-size:12px;font-weight:700;color:#8B6A00;margin-bottom:8px;">推荐收益预览</div>
+          <div class="row-between" style="margin-bottom:4px;"><span style="font-size:11px;color:#8B6A00;">好友购买 ¥299 商品</span><span style="font-size:11px;font-weight:700;color:var(--accent);font-family:var(--font-mono);">→ +¥89.70</span></div>
+          <div class="row-between"><span style="font-size:11px;color:#8B6A00;">好友购买升级套餐 ¥1986</span><span style="font-size:11px;font-weight:700;color:var(--accent);font-family:var(--font-mono);">→ +¥595.80</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑩ 区域代理 -->
+  <div class="screen-wrap">
+    <div class="screen-name">10 / 区域代理</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar"><span class="status-time">9:41</span><div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div></div>
+      <div class="nav-bar">
+        <div class="nav-back">←</div>
+        <div class="nav-title">区域代理</div>
+        <div class="nav-action"></div>
+      </div>
+      <div class="scroll-area">
+        <!-- map placeholder -->
+        <div class="img-placeholder" style="height:160px;margin:8px 12px;border-radius:10px;background:#E8F0F8;">
+          <div style="text-align:center;">
+            <div style="font-size:24px;margin-bottom:4px;">🗺️</div>
+            <div style="font-size:11px;color:var(--ink3);">区域覆盖地图</div>
+            <div style="font-size:9px;color:var(--ink3);font-family:var(--font-mono);">可交互地图组件</div>
+          </div>
+        </div>
+
+        <!-- Level cards -->
+        <div style="padding:0 12px 4px;font-size:11px;color:var(--ink3);">选择开通级别</div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;padding:0 12px 8px;">
+          <div style="background:white;border:1.5px solid var(--border);border-radius:10px;padding:12px;">
+            <div class="row-between" style="margin-bottom:6px;">
+              <div class="row" style="gap:6px;">
+                <span style="background:#E5EEFF;color:var(--accent2);border-radius:5px;padding:2px 7px;font-size:10px;font-weight:700;">区县级</span>
+                <span style="font-size:12px;font-weight:700;">单个区/县</span>
+              </div>
+              <span style="font-size:14px;font-weight:700;color:var(--accent2);font-family:var(--font-mono);">¥6.8w</span>
+            </div>
+            <div style="font-size:10px;color:var(--ink3);line-height:1.6;margin-bottom:8px;">· 区域内订单5%回本机制<br>· 回本后独立走分公司系统</div>
+            <div class="btn btn-outline" style="height:32px;font-size:11px;border-color:var(--accent2);color:var(--accent2);">查询区域可用性</div>
+          </div>
+
+          <div style="background:white;border:1.5px solid var(--gold);border-radius:10px;padding:12px;box-shadow:2px 2px 0 var(--gold);">
+            <div class="row-between" style="margin-bottom:6px;">
+              <div class="row" style="gap:6px;">
+                <span style="background:#FFF5DD;color:#8B6A00;border-radius:5px;padding:2px 7px;font-size:10px;font-weight:700;">地市级</span>
+                <span style="font-size:12px;font-weight:700;">整个地级市</span>
+              </div>
+              <span style="font-size:14px;font-weight:700;color:var(--gold);font-family:var(--font-mono);">¥16.8w</span>
+            </div>
+            <div style="font-size:10px;color:var(--ink3);line-height:1.6;margin-bottom:8px;">· 包含区县级全部权益<br>· 覆盖更广，流量更大</div>
+            <div class="btn btn-gold" style="height:32px;font-size:11px;">申请开通</div>
+          </div>
+
+          <div style="background:white;border:1.5px solid var(--accent);border-radius:10px;padding:12px;box-shadow:2px 2px 0 var(--accent);">
+            <div class="row-between" style="margin-bottom:6px;">
+              <div class="row" style="gap:6px;">
+                <span style="background:#FFEAE5;color:var(--accent);border-radius:5px;padding:2px 7px;font-size:10px;font-weight:700;">省级</span>
+                <span style="font-size:12px;font-weight:700;">全省覆盖</span>
+              </div>
+              <span style="font-size:14px;font-weight:700;color:var(--accent);font-family:var(--font-mono);">¥30w</span>
+            </div>
+            <div style="font-size:10px;color:var(--ink3);line-height:1.6;margin-bottom:8px;">· 最高级别，含全省区县<br>· 过路费 4%~5%</div>
+            <div class="btn btn-primary" style="height:32px;font-size:11px;">申请开通</div>
+          </div>
+
+          <!-- Recoup progress (for existing agent) -->
+          <div style="background:#E5F5EB;border:1px solid #A8DEBB;border-radius:10px;padding:12px;">
+            <div style="font-size:12px;font-weight:700;color:#1A7A3A;margin-bottom:6px;">我的回本进度（杭州西湖区）</div>
+            <div class="row-between" style="margin-bottom:6px;">
+              <span style="font-size:10px;color:#1A7A3A;">已回本：¥42,600</span>
+              <span style="font-size:10px;color:#1A7A3A;">目标：¥68,000</span>
+            </div>
+            <div class="progress-bar" style="background:#A8DEBB;">
+              <div class="progress-fill" style="width:62%;background:#1A7A3A;"></div>
+            </div>
+            <div style="font-size:9px;color:#1A7A3A;margin-top:4px;font-family:var(--font-mono);">62.6% · 预计还需 ¥25,400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screens-row -->
+
+
+<!-- ═══════════════════════════════════════
+     USER FLOW DIAGRAM
+═══════════════════════════════════════ -->
+<div class="flow-section">
+  <div class="flow-title">User Flow · 分销核心路径</div>
+
+  <div style="display:flex;flex-direction:column;gap:20px;">
+    <!-- Flow 1 -->
+    <div>
+      <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--ink2);">路径一：新用户 → 代理升级 → 开始分销</div>
+      <div class="flow-grid">
+        <div class="flow-node">微信授权登录</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">浏览商品体验</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node accent">购买升级套餐</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node gold">身份变更：代理</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node blue">获取邀请码/海报</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">分享拉新</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node accent">收益到账</div>
+      </div>
+    </div>
+
+    <!-- Flow 2 -->
+    <div>
+      <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--ink2);">路径二：订单完成 → 分佣结算</div>
+      <div class="flow-grid">
+        <div class="flow-node">用户下单支付</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">系统识别收货地址</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node blue">向上追溯2级邀请关系</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">冻结佣金 T+7</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">确认收货后解冻</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node accent">各级用户到账</div>
+      </div>
+      <div class="flow-note" style="margin-top:8px;">※ 同时触发：区域代理过路费归属 · 分红池5%暂存 · 二次回购检测</div>
+    </div>
+
+    <!-- Flow 3 -->
+    <div>
+      <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--ink2);">路径三：月度分红池结算</div>
+      <div class="flow-grid">
+        <div class="flow-node">月末触发定时任务</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node blue">统计当月分红池总额</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">全联创平分 3%</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node gold">业绩前30名再分 2%</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node accent">到账通知推送</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<div style="padding:24px 60px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center;">
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink3);">商城小程序 · 原型线框图 v1.0 · 共10屏</div>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--ink3);">含分销 · 区域代理 · 收益体系</div>
+</div>
+
+</body>
+</html>
