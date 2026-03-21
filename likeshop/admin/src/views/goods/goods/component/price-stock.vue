@@ -9,7 +9,7 @@
     </el-form-item>
 
     <div v-if="modelValue.specType == 2">
-        <specifications v-model="modelValue"></specifications>
+        <specifications :modelValue="modelValue" @update:modelValue="$emit('update:modelValue', $event)"></specifications>
     </div>
 
     <div v-if="modelValue.specType == 1">
@@ -85,4 +85,6 @@ withDefaults(
         modelValue: {}
     }
 )
+
+defineEmits(['update:modelValue'])
 </script>
