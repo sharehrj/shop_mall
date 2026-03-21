@@ -102,7 +102,7 @@ export function useFile(
     const isCheckAll = ref(false)
     const isIndeterminate = ref(false)
     const fileParams = reactive({
-        name: '',
+        keyword: '',
         type: type,
         cid: cateId
     })

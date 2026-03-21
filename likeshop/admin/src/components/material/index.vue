@@ -140,7 +140,7 @@
                 <el-input
                     class="w-60"
                     placeholder="请输入名称"
-                    v-model="fileParams.name"
+                    v-model="fileParams.keyword"
                     @keyup.enter="refresh"
                 >
                     <template #append>
@@ -479,7 +479,7 @@ watch(
     }
 )
 watch(cateId, () => {
-    fileParams.name = ''
+    fileParams.keyword = ''
     refresh()
 })
 
