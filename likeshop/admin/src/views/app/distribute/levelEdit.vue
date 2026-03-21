@@ -50,6 +50,14 @@
                             </div>
                         </div>
                     </el-form-item>
+                    <el-form-item label="等级标识码">
+                        <el-input
+                            class="w-[400px]"
+                            v-model="formData.levelCode"
+                            placeholder="如 VIP1、VIP2"
+                            :disabled="type == 'detail'"
+                        ></el-input>
+                    </el-form-item>
                     <el-form-item label="等级说明" prop="description">
                         <el-input
                             class="w-[400px]"
@@ -62,7 +70,7 @@
                 </div>
             </el-card>
             <el-card class="!border-none mt-4" shadow="never">
-                <div class="font-bold text-xl">等级佣金</div>
+                <div class="font-bold text-xl">分销佣金</div>
                 <div class="mt-4">
                     <el-form-item label="自购佣金比例" prop="selfRatio">
                         <el-input
@@ -91,6 +99,55 @@
                             <div class="form-tips">
                                 佣金支持小数点后2位，等级佣金总和不能超过100%
                             </div>
+                        </div>
+                    </el-form-item>
+                </div>
+            </el-card>
+            <el-card class="!border-none mt-4" shadow="never">
+                <div class="font-bold text-xl">身份佣金</div>
+                <div class="mt-4">
+                    <el-form-item label="直推佣金比例">
+                        <div>
+                            <el-input
+                                class="w-[400px]"
+                                v-model="formData.directRatio"
+                                placeholder="请输入直推佣金比例"
+                                :disabled="type == 'detail'"
+                            ></el-input>
+                            <div class="form-tips">直推：用户直接推荐人购买时获得的佣金比例</div>
+                        </div>
+                    </el-form-item>
+                    <el-form-item label="复购佣金比例">
+                        <div>
+                            <el-input
+                                class="w-[400px]"
+                                v-model="formData.repurchaseRatio"
+                                placeholder="请输入复购佣金比例"
+                                :disabled="type == 'detail'"
+                            ></el-input>
+                            <div class="form-tips">复购：推荐人再次购买时获得的佣金比例</div>
+                        </div>
+                    </el-form-item>
+                    <el-form-item label="价差佣金比例">
+                        <div>
+                            <el-input
+                                class="w-[400px]"
+                                v-model="formData.priceDiffRatio"
+                                placeholder="请输入价差佣金比例"
+                                :disabled="type == 'detail'"
+                            ></el-input>
+                            <div class="form-tips">价差：上下级等级差异产生的补差佣金比例</div>
+                        </div>
+                    </el-form-item>
+                    <el-form-item label="培育佣金比例">
+                        <div>
+                            <el-input
+                                class="w-[400px]"
+                                v-model="formData.cultivateRatio"
+                                placeholder="请输入培育佣金比例"
+                                :disabled="type == 'detail'"
+                            ></el-input>
+                            <div class="form-tips">培育：培育下级成长获得的佣金比例</div>
                         </div>
                     </el-form-item>
                 </div>
@@ -232,23 +289,28 @@ import type { FormInstance, FormRules } from 'element-plus'
 
 //表单接口
 interface IFormData {
-    name: string //名称
-    weights: string //等级
-    icon: string //图标
-    image: string //背景
-    remark: string //描述
-    selfRatio: string //自购佣金比例
-    firstRatio: string //一级分销比例
-    secondRatio: string //二级分销比例
-    updateType: string | number //等级条件 0任意条件 1全部条件
-    order_one_money_is: string //单次消费金额 开启条件 1是0否
-    singleConsumptionAmount: string //单次消费金额
-    order_all_money_is: string //累计消费金额 开启条件 1是0否
-    cumulativeConsumptionAmount: string //累计消费金额
-    order_all_num_is: string //累计消费次数 开启条件 1是0否
-    cumulativeConsumptionTimes: string //累计消费次数
-    commission_is: string //已结算佣金收入 开启条件 1是0否
-    returnedCommission: string //已结算佣金收入
+    name: string
+    levelCode: string
+    weights: string
+    icon: string
+    image: string
+    remark: string
+    selfRatio: string
+    firstRatio: string
+    secondRatio: string
+    directRatio: string
+    repurchaseRatio: string
+    priceDiffRatio: string
+    cultivateRatio: string
+    updateType: string | number
+    order_one_money_is: string
+    singleConsumptionAmount: string
+    order_all_money_is: string
+    cumulativeConsumptionAmount: string
+    order_all_num_is: string
+    cumulativeConsumptionTimes: string
+    commission_is: string
+    returnedCommission: string
 }
 
 const route = useRoute()
@@ -260,13 +322,18 @@ const ruleFormRef = ref<FormInstance>()
 //表单数据
 const formData = ref<IFormData>({
     name: '',
+    levelCode: '',
     weights: '',
     remark: '',
-    icon: '', //图标
-    image: '', //背景
+    icon: '',
+    image: '',
     selfRatio: '',
     firstRatio: '',
     secondRatio: '',
+    directRatio: '',
+    repurchaseRatio: '',
+    priceDiffRatio: '',
+    cultivateRatio: '',
     updateType: 1,
     order_one_money_is: '',
     singleConsumptionAmount: '',

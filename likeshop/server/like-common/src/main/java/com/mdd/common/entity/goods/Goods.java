@@ -95,6 +95,9 @@ public class Goods implements Serializable {
     @ApiModelProperty("活动状态: 1=是, 0=否")
     private Integer isActivity;
 
+    @ApiModelProperty("是否身份套餐商品: [0=否, 1=是]")
+    private Integer isPackage;
+
     @ApiModelProperty("删除状态: 1=是, 0=否")
     private Integer isDelete;
 

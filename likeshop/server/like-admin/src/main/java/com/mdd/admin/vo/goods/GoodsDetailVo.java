@@ -86,4 +86,7 @@ public class GoodsDetailVo implements Serializable {
     @ApiModelProperty(value = "是否开启上门自提")
     private Integer isSelffetch;
 
+    @ApiModelProperty(value = "是否身份套餐商品: [0=否, 1=是]")
+    private Integer isPackage;
+
 }

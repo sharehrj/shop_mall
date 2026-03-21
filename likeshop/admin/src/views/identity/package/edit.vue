@@ -4,19 +4,43 @@
             ref="popupRef"
             :title="popupTitle"
             :async="true"
-            width="560px"
+            width="580px"
             @confirm="handleSubmit"
             @close="handleClose"
         >
             <el-form ref="formRef" :model="formData" label-width="90px" :rules="formRules">
                 <el-form-item label="套餐商品" prop="goodsId">
-                    <el-input-number
-                        v-model="formData.goodsId"
-                        :min="1"
-                        placeholder="请输入商品ID"
-                        class="w-[220px]"
-                    />
-                    <span class="ml-2 text-gray-400 text-sm">输入商品ID关联套餐商品</span>
+                    <div class="w-full">
+                        <el-select
+                            v-model="formData.goodsId"
+                            filterable
+                            remote
+                            reserve-keyword
+                            placeholder="请输入商品名称搜索"
+                            :remote-method="searchGoods"
+                            :loading="goodsLoading"
+                            class="w-[360px]"
+                        >
+                            <el-option
+                                v-for="item in goodsList"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id"
+                            >
+                                <div class="flex items-center">
+                                    <el-image
+                                        class="w-[32px] h-[32px] mr-2 flex-none"
+                                        :src="item.image"
+                                        fit="cover"
+                                    />
+                                    <div>
+                                        <div class="text-sm">{{ item.name }}</div>
+                                        <div class="text-xs text-gray-400">¥{{ item.minPrice }}</div>
+                                    </div>
+                                </div>
+                            </el-option>
+                        </el-select>
+                    </div>
                 </el-form-item>
                 <el-form-item label="升级等级" prop="levelId">
                     <el-select v-model="formData.levelId" placeholder="请选择升级等级" class="w-[220px]">
@@ -55,6 +79,7 @@
 import type { FormInstance, FormRules } from 'element-plus'
 import { identityPackageAdd, identityPackageEdit } from '@/api/identity/package'
 import { levelList as getLevelSelectList } from '@/api/distribution/level'
+import { goodsLists } from '@/api/goods/goods'
 import Popup from '@/components/popup/index.vue'
 
 const emit = defineEmits(['success', 'close'])
@@ -63,6 +88,8 @@ const popupRef = shallowRef<InstanceType<typeof Popup>>()
 
 const mode = ref('add')
 const levelList = ref<any[]>([])
+const goodsList = ref<any[]>([])
+const goodsLoading = ref(false)
 
 const formData = reactive({
     id: undefined as number | undefined,
@@ -74,12 +101,25 @@ const formData = reactive({
 })
 
 const formRules = reactive<FormRules>({
-    goodsId: [{ required: true, message: '请输入商品ID', trigger: 'blur' }],
+    goodsId: [{ required: true, message: '请选择套餐商品', trigger: 'change' }],
     levelId: [{ required: true, message: '请选择升级等级', trigger: 'change' }],
     isRenew: [{ required: true, message: '请选择套餐类型', trigger: 'change' }]
 })
 
 const popupTitle = computed(() => (mode.value === 'edit' ? '编辑套餐' : '新增套餐'))
+
+const searchGoods = async (query: string) => {
+    if (!query) return
+    goodsLoading.value = true
+    try {
+        const data = await goodsLists({ pageNo: 1, pageSize: 20, name: query } as any)
+        goodsList.value = data?.lists || []
+    } catch (error) {
+        console.log('搜索商品失败', error)
+    } finally {
+        goodsLoading.value = false
+    }
+}
 
 const fetchLevelList = async () => {
     try {
@@ -103,6 +143,10 @@ const setFormData = (row: any) => {
     formData.isRenew = row.isRenew
     formData.status = row.status
     formData.sort = row.sort
+    // 编辑时把当前商品加入列表供展示
+    if (row.goodsId && row.goodsName) {
+        goodsList.value = [{ id: row.goodsId, name: row.goodsName, image: row.goodsImage, minPrice: row.goodsMinPrice }]
+    }
 }
 
 const handleSubmit = async () => {

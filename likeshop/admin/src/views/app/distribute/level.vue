@@ -8,6 +8,12 @@
             <el-button type="primary" @click="toAdd">新增分销等级</el-button>
             <el-table class="mt-4" :data="pager.lists" :row-style="{ height: '60px' }">
                 <el-table-column label="等级名称" prop="name"></el-table-column>
+                <el-table-column label="等级标识" prop="levelCode" min-width="90">
+                    <template #default="{ row }">
+                        <el-tag v-if="row.levelCode" size="small">{{ row.levelCode }}</el-tag>
+                        <span v-else class="text-gray-400">-</span>
+                    </template>
+                </el-table-column>
                 <el-table-column label="等级级别" prop="weights"></el-table-column>
                 <el-table-column label="背景图">
                     <template #default="{ row }">

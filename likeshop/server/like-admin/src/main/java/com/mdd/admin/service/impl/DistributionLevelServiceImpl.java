@@ -71,6 +71,7 @@ public class DistributionLevelServiceImpl implements IDistributionLevelService {
             vo.setId(item.getId());
             vo.setName(item.getName());
             vo.setWeights(item.getWeights());
+            vo.setLevelCode(item.getLevelCode());
             vo.setIcon(UrlUtils.toAbsoluteUrl(item.getIcon()));
             vo.setImage(UrlUtils.toAbsoluteUrl(item.getImage()));
             vo.setSelfRatio(item.getSelfRatio());
@@ -121,9 +122,14 @@ public class DistributionLevelServiceImpl implements IDistributionLevelService {
         DistributionLevel level = new DistributionLevel();
         level.setName(createValidate.getName());
         level.setWeights(createValidate.getWeights());
+        level.setLevelCode(createValidate.getLevelCode() != null ? createValidate.getLevelCode() : "");
         level.setSelfRatio(createValidate.getSelfRatio());
         level.setFirstRatio(createValidate.getFirstRatio());
         level.setSecondRatio(createValidate.getSecondRatio());
+        level.setDirectRatio(createValidate.getDirectRatio() != null ? createValidate.getDirectRatio() : 0.0);
+        level.setRepurchaseRatio(createValidate.getRepurchaseRatio() != null ? createValidate.getRepurchaseRatio() : 0.0);
+        level.setPriceDiffRatio(createValidate.getPriceDiffRatio() != null ? createValidate.getPriceDiffRatio() : 0.0);
+        level.setCultivateRatio(createValidate.getCultivateRatio() != null ? createValidate.getCultivateRatio() : 0.0);
         level.setIcon(UrlUtils.toRelativeUrl(createValidate.getIcon()));
         level.setImage(UrlUtils.toRelativeUrl(createValidate.getImage()));
         level.setUpdateType(createValidate.getUpdateType());
@@ -224,9 +230,14 @@ public class DistributionLevelServiceImpl implements IDistributionLevelService {
         Assert.notNull(level, "等级信息不存在");
 
         level.setName(updateValidate.getName());
+        level.setLevelCode(updateValidate.getLevelCode() != null ? updateValidate.getLevelCode() : "");
         level.setSelfRatio(updateValidate.getSelfRatio());
         level.setFirstRatio(updateValidate.getFirstRatio());
         level.setSecondRatio(updateValidate.getSecondRatio());
+        level.setDirectRatio(updateValidate.getDirectRatio() != null ? updateValidate.getDirectRatio() : 0.0);
+        level.setRepurchaseRatio(updateValidate.getRepurchaseRatio() != null ? updateValidate.getRepurchaseRatio() : 0.0);
+        level.setPriceDiffRatio(updateValidate.getPriceDiffRatio() != null ? updateValidate.getPriceDiffRatio() : 0.0);
+        level.setCultivateRatio(updateValidate.getCultivateRatio() != null ? updateValidate.getCultivateRatio() : 0.0);
         level.setRemark(updateValidate.getRemark());
         level.setIcon(UrlUtils.toRelativeUrl(updateValidate.getIcon()));
         level.setImage(UrlUtils.toRelativeUrl(updateValidate.getImage()));

@@ -22,6 +22,9 @@ public class DistributionLevelDetailVo implements Serializable {
     @ApiModelProperty("等级权重")
     private Integer weights;
 
+    @ApiModelProperty("等级标识码")
+    private String levelCode;
+
     @ApiModelProperty("等级描述")
     private String remark;
 
@@ -33,6 +36,18 @@ public class DistributionLevelDetailVo implements Serializable {
 
     @ApiModelProperty("自购佣金比例")
     private Double selfRatio;
+
+    @ApiModelProperty("直推佣金比例(%)")
+    private Double directRatio;
+
+    @ApiModelProperty("复购佣金比例(%)")
+    private Double repurchaseRatio;
+
+    @ApiModelProperty("价差佣金比例(%)")
+    private Double priceDiffRatio;
+
+    @ApiModelProperty("培育佣金比例(%)")
+    private Double cultivateRatio;
 
     @ApiModelProperty("等级图标")
     private String icon;

@@ -22,6 +22,9 @@ public class DistributionLevelListedVo implements Serializable {
     @ApiModelProperty("等级权重")
     private Integer weights;
 
+    @ApiModelProperty("等级标识码")
+    private String levelCode;
+
     @ApiModelProperty("一级佣金比例")
     private Double firstRatio;
 

@@ -36,6 +36,9 @@ public class DistributionLevelCreateValidate implements Serializable {
     @ApiModelProperty("等级背景")
     private String image;
 
+    @ApiModelProperty(value = "等级标识码 如 VIP1/VIP2")
+    private String levelCode;
+
     @ApiModelProperty(value = "等级说明")
     private String remark;
 
@@ -56,6 +59,26 @@ public class DistributionLevelCreateValidate implements Serializable {
     @Max(value = 100, message = "二级佣金比例不能大于100")
     @ApiModelProperty(value = "二级佣金比例")
     private Double secondRatio;
+
+    @Min(value = 0, message = "直推佣金比例不能小于0")
+    @Max(value = 100, message = "直推佣金比例不能大于100")
+    @ApiModelProperty(value = "直推佣金比例(%)")
+    private Double directRatio;
+
+    @Min(value = 0, message = "复购佣金比例不能小于0")
+    @Max(value = 100, message = "复购佣金比例不能大于100")
+    @ApiModelProperty(value = "复购佣金比例(%)")
+    private Double repurchaseRatio;
+
+    @Min(value = 0, message = "价差佣金比例不能小于0")
+    @Max(value = 100, message = "价差佣金比例不能大于100")
+    @ApiModelProperty(value = "价差佣金比例(%)")
+    private Double priceDiffRatio;
+
+    @Min(value = 0, message = "培育佣金比例不能小于0")
+    @Max(value = 100, message = "培育佣金比例不能大于100")
+    @ApiModelProperty(value = "培育佣金比例(%)")
+    private Double cultivateRatio;
 
     @NotNull(message = "等级条件类型不能为空")
     @IntegerContains(values = {1, 2}, message = "等级条件类型参数不在合法值内")

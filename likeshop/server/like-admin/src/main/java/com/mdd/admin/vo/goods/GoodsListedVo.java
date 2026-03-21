@@ -48,6 +48,9 @@ public class GoodsListedVo implements Serializable {
     @ApiModelProperty(value = "活动状态")
     private Integer isActivity;
 
+    @ApiModelProperty(value = "是否身份套餐商品: [0=否, 1=是]")
+    private Integer isPackage;
+
     @ApiModelProperty(value = "创建时间")
     private String createTime;
 
