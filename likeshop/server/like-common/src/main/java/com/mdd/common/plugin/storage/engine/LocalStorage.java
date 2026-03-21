@@ -40,7 +40,7 @@ public class LocalStorage {
 
         // 保存文件
         try {
-            File dest = new File(savePath, saveName);
+            File dest = new File(savePath, saveName).getAbsoluteFile();
             multipartFile.transferTo(dest);
         } catch (Exception e) {
             throw new OperateException("上传文件失败:"+e.getMessage());
