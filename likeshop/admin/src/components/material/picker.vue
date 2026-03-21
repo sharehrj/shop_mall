@@ -10,7 +10,7 @@
         >
             <template v-if="!hiddenUpload" #trigger>
                 <div class="material-select__trigger clearfix" @click.stop>
-                    <draggable class="draggable" v-model="fileList" @change="changeMaterialSort" animation="300" item-key="id">
+                    <draggable class="draggable" v-model="fileList" @change="changeMaterialSort" animation="300" :item-key="(item) => item">
                         <template v-slot:item="{ element, index }">
                             <div
                                 class="material-preview"
